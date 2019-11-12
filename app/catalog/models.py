@@ -3,7 +3,8 @@ from sqlalchemy.orm import backref
 
 from app import db
 from sqlalchemy.ext.declarative import declarative_base
-
+from datetime import datetime
+from app import db, bcrypt  # app/__init__.py
 
 Base = declarative_base()
 
@@ -20,7 +21,7 @@ class Exercise(db.Model):
     # Relationships
     meta_drill = db.Column(db.String(255), db.ForeignKey('meta_drills.value'))
 
-    #tags
+    # tags
     # exercise_tools - should be the same concept as tags
 
     def __init__(self, name: str, link: str, goal: int,
@@ -50,6 +51,7 @@ class ExerciseTag(db.Model):
         self.artifact_id = artifact_id
         self.value = value
 
+
 class MetaDrill(db.Model):
     __tablename__ = 'meta_drills'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
@@ -65,55 +67,3 @@ class Tool(db.Model):
 
     def __init__(self, tool_name: str):
         self.tool_name = tool_name
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# class ExerciseTag(db.Model):
-#     __tablename__ = 'exercise_tags'
-#
-#     id = db.Column(db.Integer(), primary_key=True)
-#     value = db.Column(db.String(80), nullable=False, unique=True)
-#
-#     # Relationships
-#     exercise_id = db.Column(db.Integer(), db.foreignKey('exercises.id'),
-#                             nullable=False)  # forign key reference to execercise id
-#
-#     def __init__(self, value, exercise_id):
-#         self.value = value
-#         self.exercise_id = exercise_id
-#
-#     def __repr__(self):
-#         return f" exercise tag with value: {self.value} to exercise id: {self.exercise_id}"
-
-# class ExerciseTool(db.Model):
-#     __tablename__ = 'exercise_tools'
-#
-#     id = db.Column(db.Integer, primary_key=True)
-#     value = db.Column(db.VARCHAR(80), nullable=False)  # some kind of string
-#
-#     # Relationships
-#     exercise_id = db.Column(db.Integer, db.foreignKey('exercises.id'))  # forign key reference to execercise id
-#
-#     def __init__(self, value, exercise_id):
-#         self.value = value
-#         self.exercise_id = exercise_id
-#
-#     def __repr__(self):
-#         return f" tool: {self.value} to exercise id: {self.exercise_id}"
