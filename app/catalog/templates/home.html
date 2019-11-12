@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<head>
+    <title>My exercises</title>
+</head>
+
+<section>
+    <div class="list-group mb-3">
+        {% for e in exercises %}
+        <div class="list-group-item">
+            <h4> Exercise: {{ e.name }}</h4>
+            <p> Link: <a href="{{e.link}}"> {{ e.link }} </a> </p>
+            {% if e.static == true %}
+                <p> Goal: {{ e.goal }} seconds</p>
+            {% else %}
+                <p> Goal: {{e.goal}} reps </p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <a class="btn btn-primary" href="{{ url_for('main.new_exercise') }}">
+    Create New Exercise </a>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--Head-->
+{% block head %}
+<head>
+    <meta charset="UTF-8">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sansita&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Performance accelerator</title>
+</head>
+{% endblock head %}
+
+    <!--body-->
+    {% block body %}
+    <body>
+    <div class="wrapper">
+        <!--navigation bar-->
+        {% block navbar %}
+
+        <nav class="navbar navbar-inverse bg-dark">
+            <div class="container">
+                <a class="navbar-brand title" href="{{ url_for('main.display_exercises') }}">Welcome to physical capabilities Heaven</a>
+                <ul class="nav navbar-nav pull-right nav-list">
+                    <p><a href="#" class="text-muted">Home</a></p>
+                    <p><a href="#" class="text-muted">Register</a></p>
+                    <p><a href="#" class="text-muted">SignIn</a></p>
+
+                </ul>
+            </div>
+        </nav>
+        {% endblock navbar %}
+
+        <!--empty block for custom content-->
+        {% block content %} {% endblock content %}
+
+        <!--footer-->
+        {% block footer %}
+        <footer>
+            <div class="container ftr">
+                <hr>
+                <p class="text-center small"> Ultimate Athlete &copy;	| 2019 </p>
+            </div>
+        </footer>
+        {% endblock footer %}
+
+    </div>
+    </body>
+    {% endblock body %}
+</html>
