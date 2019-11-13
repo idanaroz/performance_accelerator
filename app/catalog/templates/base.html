@@ -25,11 +25,26 @@
     <nav class="navbar navbar-inverse bg-dark">
         <div class="container">
             <a class="navbar-brand title" href="{{ url_for('main.display_exercises') }}">Welcome to the ultimate
-                athleticism performance coach</a>
-            <ul class="nav navbar-nav pull-right nav-list">
-                <p><a href="#" class="text-muted">Home</a></p>
-                <p><a href="#" class="text-muted">Register</a></p>
-                <p><a href="#" class="text-muted">SignIn</a></p>
+                athleticism performance coach !</a>
+
+            <ul class="nav navbar-nav pull-right">
+                <li><a href="{{ url_for('main.display_exercises')}}" class="text-muted">Home</a></li>
+                <li><a href="{{ url_for('authentication.register_user')}}" class="text-muted">Register</a></li>
+                <li> {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('authentication.log_out_user') }}" class="text-muted"> SignOut </a>
+                    {% else %}
+                    <a href="{{ url_for('authentication.do_the_login') }}" class="text-muted"> SignIn </a>
+                    {% endif %}
+                </li>
+                <li>
+                    <a href="">
+                        {% if current_user.is_authenticated %}
+                        LoggedIn as <b style="color: deeppink"> {{ current_user.user_name.title() }}</b>
+                        {% else %}
+                        Not Logged-in
+                        {% endif %}
+                    </a>
+                </li>
 
             </ul>
         </div>
