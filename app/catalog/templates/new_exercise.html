@@ -10,28 +10,30 @@
             <input type="text" class="form-control" id="name" name="name" placeholder="push up">
         </div>
 
-
-        <div class="form-group">
+        <div class="form group">
             <label for="link">video link</label>
-            <input class="form-control" id="link" name="link" type="text"  placeholder="https://..."/>
+            <input type="text" class="form-control" id="link" name="link" placeholder="https://...">
         </div>
 
-        <div class="form-group">
+        <div class="form group">
             <label for="goal">goal</label>
-            <input class="form-control" id="goal" name="goal" type="text"/>
+            <input class="form-control" id="goal" name="goal" type="text" aria-describedby="GoalHelp"/>
+            <small class="form-text text-muted" id="GoalHelp">
+                What Goal should you aspire for this exercise?
+            </small>
         </div>
 
-        <div class="form-group">
-            <label for="bodyweight">bodyweight</label>
+        <div class="form group">
+            <label for="bodyweight">Is it bodyweight exercise?</label>
             <input class="form-control" id="bodyweight" name="bodyweight" type="text"/>
         </div>
 
-        <div class="form-group">
-            <label for="static">static</label>
+        <div class="form group">
+            <label for="static">Is it static? </label>
             <input class="form-control" id="static" name="static" type="text"/>
         </div>
 
-        <div class="form-group">
+        <div class="form group">
             <label for="meta_drill">Meta drill</label>
             <input class="form-control" id="meta_drill" name="meta_drill" type="text" aria-describedby="metaDrillHelp"
                    placeholder='hand stand push up'/>
