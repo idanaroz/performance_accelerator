@@ -1,12 +1,13 @@
 # /app/__init__.py
 
 import os
+
 from flask import Flask
 from flask_bcrypt import Bcrypt
-from flask_login import LoginManager
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 from flask_bootstrap import Bootstrap
+from flask_login import LoginManager
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 bootstrap = Bootstrap()
@@ -21,7 +22,7 @@ def create_app(config_type):
 
     db.init_app(app) # bind database to flask app
     migrate.init_app(app, db)  # INITIALIZE MIGRATE
-    # bootstrap.init_app()
+    bootstrap.init_app(app)
     login_manager.init_app(app)
     bcrypt.init_app(app)
 

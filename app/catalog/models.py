@@ -1,9 +1,9 @@
-from sqlalchemy.orm import backref
 # https://www.youtube.com/watch?v=OvhoYbjtiKc&list=PLXmMXHVSvS-BlLA5beNJojJLlpE0PJgCW&index=6
 
-from app import db
-from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
+
+from sqlalchemy.ext.declarative import declarative_base
+
 from app import db, bcrypt  # app/__init__.py
 
 Base = declarative_base()
@@ -60,6 +60,7 @@ class MetaDrill(db.Model):
     def __init__(self, value: str):
         self.value = value
 
+
 class Tool(db.Model):
     __tablename__ = 'tools'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
@@ -67,3 +68,20 @@ class Tool(db.Model):
 
     def __init__(self, tool_name: str):
         self.tool_name = tool_name
+
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_name = db.Column(db.String(20))
+    user_email = db.Column(db.String(60), unique=True, index=True)
+    user_password = db.Column(db.String(80))
+    registration_date = db.Column(db.DateTime, default=datetime.now())
+
+    @classmethod
+    def create_user(cls, user, email, password):
+        user = cls(user_name=user,
+                   user_email=email,
+                   user_password=bcrypt.generate_password_hash(password).decode('utf-8'))
+        db.session.add(user)
+        db.session.commit()
+        return user

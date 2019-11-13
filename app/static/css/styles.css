@@ -3,15 +3,18 @@ h1, h2, h3, h4 { font-family: Sansita, serif }
 p, li  { font-size: small }
 footer { position: absolute; width: 100%; left:0 ;bottom: 0; height: 40px }
 span {margin: 2px}
-
-.navbar-brand {color: floralwhite; font-family: Sansita, serif;   font-weight: bold;}
+.navbar-brand {color: floralwhite; font-family: Sansita, serif;   font-weight: bold; }
 .nav-list { position: relative; right: 7% }
-.books {padding: 25px; position: relative; left: 5%; width: 80%}
+.exercises {padding: 25px; position: relative; left: 5%; width: 80%}
 .publisher {padding: 25px; position: relative; left: 40px}
 .ftr {padding: 25px}
 .wrapper {position: relative; min-height: 120%}
-
-
 .form {height: 50%; width:70%; padding: 10px; position: relative; left: 48px}
 .form-group {width: 40%}
 .login-msg {position: relative; left: 48px }
+
+ul { position: relative; top: 25px; right: 7%;}
+a h3 {position: relative; left: 10%}
+.navbar-inverse { height: 5%; }
+.exercises {padding: 25px; position: relative; left: 5%; width: 80%}
+.title { color: floralwhite;}

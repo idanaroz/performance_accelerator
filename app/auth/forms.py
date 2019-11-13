@@ -1,9 +1,21 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, PasswordField
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+
+from app.catalog.models import User
+
+
+def email_exists(form, field):
+    email = User.query.filter_by(user_email=field.data).first()
+    if email:
+        raise ValidationError('Email already exists')
 
 
 class RegistrationForm(FlaskForm):
-
-    name = StringField('Whats your name?')
-    email = StringField('Enter your E-Mail')
+    name = StringField('Whats your name?',
+                       validators=[DataRequired(), Length(3, 15, message='between 3 to 15 characters')])
+    email = StringField('Enter your E-Mail', validators=[DataRequired(), Email(), email_exists])
+    password = PasswordField('Password',
+                             validators=[DataRequired(), Length(5), EqualTo('confirm', message='password mush match')])
+    confirm = PasswordField('Confirm', validators=[DataRequired()])
     submit = SubmitField('Register')
