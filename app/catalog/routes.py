@@ -2,7 +2,7 @@ from flask import render_template, request, flash, redirect, url_for
 from flask_login import login_required
 
 from app.catalog import main
-from app.catalog.forms import EditExerciseForm
+from app.catalog.forms import EditExerciseForm, CreateExerciseForm
 from app.catalog.models import *
 
 
@@ -59,3 +59,22 @@ def edit_exercise(exercise_id):
         return redirect(url_for('main.display_exercises'))
     else:
         return render_template('edit_exercise.html', form=form)
+
+
+@main.route('/create/exercise', methods=['GET', 'POST'])
+@login_required
+def create_exercise():
+    form = CreateExerciseForm()
+
+    if form.validate_on_submit():
+        exercise = Exercise(name=form.name.data,
+                            link=form.link.data,
+                            tag='',
+                            goal=form.goal.data,
+                            static=form.static.data,
+                            meta_drill=form.meta_drill.data)
+        db.session.add(exercise)  # update the tag as well
+        db.session.commit()
+        flash('Exercise was added successfully')
+        return redirect(url_for('main.display_exercises'))  # show maybe all relevant for this Metadata
+    return render_template('create_exercise.html', form=form)
