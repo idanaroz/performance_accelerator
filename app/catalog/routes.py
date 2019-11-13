@@ -1,9 +1,9 @@
-from flask import render_template, Blueprint, request
+from flask import render_template, request, flash, redirect, url_for
+from flask_login import login_required
 
 from app.catalog import main
-from app import db
-
-from  app.catalog.models import *
+from app.catalog.forms import EditExerciseForm
+from app.catalog.models import *
 
 
 @main.route('/')
@@ -27,3 +27,35 @@ def new_exercise():
         # Alert(alert_name, item._id, price_limit).save_to_mongo()
 
     return render_template('/new_exercise.html')
+
+
+@main.route('/exercise/delete/<exercise_id>', methods=['GET', 'POST'])
+@login_required
+def delete_exercise(exercise_id):
+    exercise = Exercise.query.get(exercise_id)
+    if request.method == 'POST':
+        db.session.delete(exercise)
+        db.session.commit()
+        flash('exercise deleted successfully')
+        return redirect(url_for('main.display_exercises'))
+    return render_template('delete_exercise.html', exercise=exercise, exercise_id=exercise_id)
+
+
+@main.route('/edit/exercise/<exercise_id>', methods=['GET', 'POST'])
+@login_required
+def edit_exercise(exercise_id):
+    exercise = Exercise.query.get(exercise_id)
+    form = EditExerciseForm(obj=exercise)
+    if form.validate_on_submit():
+        exercise.name = form.name.data
+        exercise.link = form.link.data  # edit link is not working properly
+        exercise.goal = form.goal.data
+        exercise.bodyweight = form.bodyweight.data
+        exercise.static = form.static.data
+        exercise.meta_drill = form.meta_drill.data
+        db.session.add(exercise)
+        db.session.commit()
+        flash('Book Edited successfully')
+        return redirect(url_for('main.display_exercises'))
+    else:
+        return render_template('edit_exercise.html', form=form)

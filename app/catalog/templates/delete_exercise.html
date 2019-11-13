@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="container">
+    <h4 style="margin-left: 45px"> delete the exercise? </h4>
+    <hr>
+    <p style="margin-left: 45px">
+        Exercise Id: {{ exercise.id }} <br>
+        Exercise name: {{ exercise.name }} <br>
+        Exercise video link: {{ exercise.link }} <br>
+    </p>
+    <br>
+    <form action="{{ url_for('main.delete_exercise', exercise_id=exercise.id) }}" method="POST"
+          style="margin-left: 45px">
+        <button type="submit" class="btn btn-sm btn-danger"> Delete</button>
+    </form>
+
+</div>
+
+
+{% endblock %}

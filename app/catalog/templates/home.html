@@ -16,11 +16,15 @@
             {% else %}
                 <p> Goal: {{e.goal}} reps </p>
             {% endif %}
+            <span class="btn btn-primary btn-sm"><a href="{{ url_for( 'main.edit_exercise', exercise_id=e.id) }}"
+                                                    style="color: floralwhite"> Edit </a> </span>
+            <span class="btn btn-info btn-sm"><a href="{{ url_for( 'main.delete_exercise', exercise_id=e.id) }}"
+                                                 style="color: floralwhite"> Delete </a> </span>
         </div>
         {% endfor %}
     </div>
 
-    <a class="btn btn-primary" href="{{ url_for('main.new_exercise') }}">
+    <a class="btn btn-primary" href="{{ url_for('main.new_exercise') }}" style="margin: 10px">
     Create New Exercise </a>
 
 </section>
