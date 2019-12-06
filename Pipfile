@@ -6,13 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-flask = "*"
-sqlalchemy = "*"
-flask-sqlalchemy = "*"
-mysqldb = "*"
-flask-mysqldb = "*"
-lazy = "*"
-at = "*"
+psycopg2 = "*"
 
 [requires]
-python_version = "3.6.8"
+python_version = "3.7"

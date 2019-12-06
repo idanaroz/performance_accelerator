@@ -14,10 +14,8 @@
             {% if e.static == true %}
                 <p> Goal: {{ e.goal }} seconds</p>
             {% else %}
-                <p> Goal: {{e.goal}} reps </p>
+            <p> Goal: {{e.goal}} reps </p>
             {% endif %}
-            <span class="btn btn-success btn-sm"><a href="{{ url_for( 'main.create_exercise', exercise_id=e.id) }}"
-                                                    style="color: floralwhite"> Create </a> </span>
             <span class="btn btn-primary btn-sm"><a href="{{ url_for( 'main.edit_exercise', exercise_id=e.id) }}"
                                                     style="color: floralwhite"> Edit </a> </span>
             <span class="btn btn-info btn-sm"><a href="{{ url_for( 'main.delete_exercise', exercise_id=e.id) }}"
@@ -26,8 +24,11 @@
         {% endfor %}
     </div>
 
-    <a class="btn btn-primary" href="{{ url_for('main.new_exercise') }}" style="margin: 10px">
-    Create New Exercise </a>
+    <span class="btn btn-primary btn-success btn-bg"
+          style="margin: 15px 22px 15px 22px; padding-left: 30px; padding-right: 30px;">
+        <a href="{{ url_for( 'main.create_exercise') }}"
+           style="color: floralwhite;"> Create</a>
+    </span>
 
 </section>
 

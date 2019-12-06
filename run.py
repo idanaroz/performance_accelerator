@@ -1,7 +1,7 @@
 from app import create_app, db
 from app.catalog.models import User
 
-flask_app = create_app('prod')
+flask_app = create_app('dev')
 
 with flask_app.app_context():
     db.create_all()
