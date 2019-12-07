@@ -8,6 +8,15 @@ verify_ssl = true
 [packages]
 psycopg2 = "*"
 gunicorn = "*"
+flask = "*"
+bcrypt = "*"
+flask-bcrypt = "*"
+click = "*"
+flask-alchemy = "*"
+flask-wtf = "*"
+alembic = "*"
+jinja2 = "*"
+flask-sqlalchemy = "*"
 
 [requires]
 python_version = "3.7"
