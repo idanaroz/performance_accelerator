@@ -10,3 +10,7 @@ with flask_app.app_context():
                          email="harry@potters.com",
                          password="secret")
 flask_app.run()
+
+
+if __name__ == '__main__':
+    flask_app.run()
