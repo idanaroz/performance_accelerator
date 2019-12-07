@@ -9,8 +9,6 @@ with flask_app.app_context():
         User.create_user(user='harry',
                          email="harry@potters.com",
                          password="secret")
-flask_app.run()
-
 
 if __name__ == '__main__':
     flask_app.run()
