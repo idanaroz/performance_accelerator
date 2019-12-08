@@ -35,6 +35,16 @@ class Exercise(db.Model):
     def __repr__(self) -> str:
         return f'The id is {self.id}, Name is {self.name} '
 
+    @classmethod
+    def create_exercise(cls, name, link, goal, bodyweight, static, tag, meta_drill):
+        if not MetaDrill.query.filter_by(value=meta_drill).first():
+            MetaDrill.create_metaDrill(value=meta_drill)
+        exercise = cls(name=name, link=link, goal=goal, bodyweight=bodyweight, static=static, tag=tag,
+                       meta_drill=meta_drill)
+        db.session.add(exercise)
+        db.session.commit()
+        return exercise
+
 
 class ExerciseTag(db.Model):
     __tablename__ = 'exercise_tags'
@@ -57,6 +67,13 @@ class MetaDrill(db.Model):
 
     def __init__(self, value: str):
         self.value = value
+
+    @classmethod
+    def create_metaDrill(cls, value):
+        metadrill = cls(value=value)
+        db.session.add(metadrill)
+        db.session.commit()
+        return metadrill
 
 
 class Tool(db.Model):

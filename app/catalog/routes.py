@@ -65,7 +65,7 @@ def edit_exercise(exercise_id):
 @login_required
 def create_exercise():
     form = CreateExerciseForm()
-
+    # Todo: replace with create exercise function
     if form.validate_on_submit():
         exercise = Exercise(name=form.name.data,
                             link=form.link.data,
